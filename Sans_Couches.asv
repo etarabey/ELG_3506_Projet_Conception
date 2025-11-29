@@ -1,0 +1,11 @@
+% eau, n0 = 1.33
+% ncellule = 3.5 
+% R = 0.2 
+% lambdac = 650 nm (eau) 
+
+R = 0.2; 
+T = 1-R; 
+lambda_1 = 200; lambda_2 = 2200; step = 1; 
+wav = lambda_1:step:lambda_2; 
+I = @(x) 6.61E15 ./ (x.^5 .* ())
+

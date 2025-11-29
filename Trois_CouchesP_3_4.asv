@@ -1,0 +1,34 @@
+% Problème 3
+syms n0 n1 n2 n3 n4 R; 
+n = [n0,n1,n2,n3,n4];
+g01 = (n0-n1)/(n0+n1); % gamma01
+g12 = (n1-n2)/(n1+n2); % gamma12
+g23 = (n2-n3)/(n2+n3); % gamma23
+g34 = (n3-n4)/(n3+n4); % gamma34 
+t01 = 2*n0/(n0+n1); 
+t12 = 2*n1/(n1+n2); 
+t23 = 2*n2/(n2+n3); 
+t34 = 2*n3/(n3+n4); 
+
+Q01 = (1/t01) .* [1 g01;g01 1]; 
+Q12 = (1/t12) .* [1 g12;g12 1]; 
+Q23 = (1/t23) .* [1 g23;g23 1]; 
+Q34 = (1/t34) .* [1 g34;g34 1]; 
+P = j.*[1 0; 0 -1]; 
+
+T = reshape(Q01,2,2)*P*reshape(Q12,2,2)*P*reshape(Q23,2,2)*P*reshape(Q34,2,2);
+
+R = T(2,1)/T(1,1); 
+R = R == 0;
+Rsol = isolate(R,n2); 
+RsolRH = rhs(Rsol); 
+n0Val = 1.33; 
+n1Val = 1.5;
+n3Val = 3.2;
+n4Val = 3.5; 
+n2Val = double(subs(RsolRH, {n0,n1,n3,n4}, {n0Val,n1Val,n3Val,n4Val}));
+fprintf('Valeur de n2 optimale: %.3f',n2Val);
+fprintf(Rsol);
+
+% Problème 4 
+T = 1-R; 
