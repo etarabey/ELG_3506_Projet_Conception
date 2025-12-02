@@ -3,9 +3,12 @@ g01 = (n0-n1)/(n0+n1); % Expression pour gamma01
 g12 = (n1-n2)/(n1+n2); % Expression pour gamma12
 g23 = (n2-n3)/(n2+n3); % Expression pour gamma23
 
-eqnR = (g01-g12-g01*g12*g23+g23)/(1-g01*g12-g12*g23+g01*g23).^2 == 0; % Expression pour R basé de ce qui est décrit dans les slides. 
+eqnR = (g01-g12-g01*g12*g23+g23)/(1-g01*g12-g12*g23+g01*g23).^2; % Expression pour R basé de ce qui est décrit dans les slides.
+eqnRsimplif = char(simplify(eqnR)); 
+fprintf('Équation pour R en termes de n: %s \n',eqnRsimplif);
+eqnR = eqnR == 0;
 Rsol = isolate(eqnR,n2); % On isole pour n2. 
-Rsolstr = char(Rsol);
+Rsolstr = char(simplify(Rsol));
 fprintf("%s \n",Rsolstr);
 RsolRH = rhs(Rsol); 
 n0Val = 1.33; 

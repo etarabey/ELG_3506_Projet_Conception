@@ -20,7 +20,7 @@ T = reshape(Q01,2,2)*P*reshape(Q12,2,2)*P*reshape(Q23,2,2)*P*reshape(Q34,2,2); %
 
 R = simplify(T(2,1)/T(1,1)); % Calcul pour la réflectivité. 
 R = R == 0;
-Rsol = isolate(R,n2); % On isole n2 encore pour trouver l'expression pour une réflectivité minimale.
+Rsol = simplify(isolate(R,n2)); % On isole n2 encore pour trouver l'expression pour une réflectivité minimale.
 Rsolstr = char(Rsol); 
 Rstr = char(lhs(R));
 fprintf('Équation pour 3a: %s \n',Rstr);
